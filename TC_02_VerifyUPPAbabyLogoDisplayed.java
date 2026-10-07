@@ -1,6 +1,8 @@
 package MyProject;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class TC_02_VerifyUPPAbabyLogoDisplayed {
@@ -13,7 +15,15 @@ public class TC_02_VerifyUPPAbabyLogoDisplayed {
         driver.get("https://stg.uppababy.co.uk/");
         Thread.sleep(3000);
 
-        System.out.println("TC Passed - Verify that the UPPAbaby logo is displayed on the home page");
+        // Locate UPPAbaby logo
+        WebElement logo = driver.findElement(By.xpath("//img[contains(@alt,'UPPAbaby')]"));
+
+        // Verify logo is displayed
+        if (logo.isDisplayed()) {
+            System.out.println("TC_02 Passed - UPPAbaby logo is displayed on the home page");
+        } else {
+            System.out.println("TC_02 Failed - UPPAbaby logo is not displayed on the home page");
+        }
 
         driver.quit();
     }
